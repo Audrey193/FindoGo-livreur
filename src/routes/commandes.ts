@@ -28,7 +28,7 @@ router.post('/commandes-proches', isLivreur, async (req: Request, res: Response)
 
 router.get('/commande/:id', isLivreur, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.params['id'] as string, 10)
     if (!id) return res.status(400).json({ success: false, message: 'ID invalide' })
 
     const commande = await getCommandeDetails(id)
